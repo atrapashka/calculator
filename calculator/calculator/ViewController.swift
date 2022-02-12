@@ -54,10 +54,11 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func onPercentButton(_ sender: Any) {
-        var calcNum = Int(calculatingNumber)
-        let num = 100
+        var calcNum = Double(calculatingNumber)
+        let num: Double = 100
         calcNum! /= num
         calculatingNumber = String(calcNum!)
+        calculatingLabel.text = calculatingNumber
     }
     @IBAction func onZeroButton(_ sender: Any) {
         if calculatingNumber == "0" {
