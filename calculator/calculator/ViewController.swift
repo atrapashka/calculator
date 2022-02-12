@@ -45,10 +45,13 @@ class ViewController: UIViewController {
         calculatingLabel.text = calculatingNumber
     }
     @IBAction func onChangeButton(_ sender: Any) {
-        var calcNum = Int(calculatingNumber)
-        let num = -1
-        calcNum! *= num
-        calculatingNumber = String(calcNum!)
+        if calculatingNumber.contains("-") {
+            calculatingNumber.remove(at: calculatingNumber.startIndex)
+            calculatingLabel.text = calculatingNumber
+        } else {
+            calculatingNumber.insert("-", at: calculatingNumber.startIndex)
+            calculatingLabel.text = calculatingNumber
+        }
     }
     @IBAction func onPercentButton(_ sender: Any) {
         var calcNum = Int(calculatingNumber)
