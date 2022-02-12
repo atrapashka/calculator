@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //MARK: - Outlets
+    //MARK: -
+    
     @IBOutlet weak var calculatingLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var changeButton: UIButton!
@@ -31,6 +34,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var equalButton: UIButton!
     
     private var calculatingNumber: String = "0"
+    private var secondCalculatingNumber: String = "0"
+    
+    //MARK: - ViewController Lifecicle
+    //MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +47,10 @@ class ViewController: UIViewController {
         calculatingLabel.text = calculatingNumber
         cornerRadius()
     }
+    
+    //MARK: - Actions
+    //MARK: -
+    
     @IBAction func onCancelButton(_ sender: Any) {
         calculatingNumber = "0"
         calculatingLabel.text = calculatingNumber
@@ -172,6 +183,9 @@ class ViewController: UIViewController {
     }
     @IBAction func onEqualButton(_ sender: Any) {
     }
+    
+    //MARK: - Private functions
+    //MARK: -
     
     private func cornerRadius() {
         let cornerRadius: CGFloat = 40
