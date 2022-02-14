@@ -34,7 +34,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var equalButton: UIButton!
     
     private var calculatingNumber: String = "0"
-    private var secondCalculatingNumber: String = "0"
+    private var globalNumber: Double = 0
+    private var plusNumber: Double = 0
+    private var minusNumber: Double = 0
+    private var multiplyNumber: Double = 0
+    private var divideNumber: Double = 0
     
     //MARK: - ViewController Lifecicle
     //MARK: -
@@ -53,6 +57,7 @@ class ViewController: UIViewController {
     
     @IBAction func onCancelButton(_ sender: Any) {
         calculatingNumber = "0"
+        plusNumber = 0
         calculatingLabel.text = calculatingNumber
     }
     @IBAction func onChangeButton(_ sender: Any) {
@@ -179,9 +184,47 @@ class ViewController: UIViewController {
     @IBAction func onMinusButton(_ sender: Any) {
     }
     @IBAction func onPlusButton(_ sender: Any) {
-        var firstNum = calculatingNumber
+        if plusNumber == 0 {
+            plusNumber += Double(calculatingNumber)!
+            
+            globalNumber = Double(calculatingNumber)!   ///
+            calculatingNumber = "0"
+            print(plusNumber, globalNumber)
+            print("1")
+        } else if plusNumber == globalNumber {
+            let g = Double(calculatingNumber)!
+            calculatingNumber = "0"
+            plusNumber += g
+            calculatingLabel.text = String(plusNumber)
+            globalNumber = plusNumber // Double(calculatingNumber)!
+            print(plusNumber, globalNumber)
+            print("2")
+        } else {
+            calculatingNumber = "0"
+            plusNumber += Double(calculatingNumber)!
+            calculatingLabel.text = String(plusNumber)
+            globalNumber = plusNumber // Double(calculatingNumber)!
+            print(plusNumber, globalNumber)
+            print("3")
+        }
     }
     @IBAction func onEqualButton(_ sender: Any) {
+        if globalNumber == 0 {
+            plusNumber += Double(calculatingNumber)!
+            calculatingLabel.text = String(plusNumber)
+            print("1.1")
+        } else if calculatingNumber == "0" {
+            let f = globalNumber
+            plusNumber += f
+            calculatingLabel.text = String(plusNumber)
+            print("1.2")
+        } else {
+            let a: String = "0"
+            plusNumber += Double(calculatingNumber)!
+            calculatingLabel.text = String(plusNumber)
+            print("1.3")
+        }
+        print(plusNumber, globalNumber)
     }
     
     //MARK: - Private functions
