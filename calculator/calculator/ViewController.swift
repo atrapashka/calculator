@@ -58,6 +58,9 @@ class ViewController: UIViewController {
     @IBAction func onCancelButton(_ sender: Any) {
         calculatingNumber = "0"
         plusNumber = 0
+        minusNumber = 0
+        multiplyNumber = 0
+        divideNumber = 0
         calculatingLabel.text = calculatingNumber
     }
     @IBAction func onChangeButton(_ sender: Any) {
@@ -77,95 +80,34 @@ class ViewController: UIViewController {
         calculatingLabel.text = calculatingNumber
     }
     @IBAction func onZeroButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "0"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "0"
-            calculatingLabel.text = calculatingNumber
-        }
+        onButtons(numberOfButton: "0")
     }
     @IBAction func onOneButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "1"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "1"
-            calculatingLabel.text = calculatingNumber
-        }
+        onButtons(numberOfButton: "1")
     }
     @IBAction func onTwoButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "2"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "2"
-            calculatingLabel.text = calculatingNumber
-        }
+        onButtons(numberOfButton: "2")
     }
     @IBAction func onThreeButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "3"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "3"
-            calculatingLabel.text = calculatingNumber
-        }
+        onButtons(numberOfButton: "3")
     }
     @IBAction func onFourButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "4"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "4"
-            calculatingLabel.text = calculatingNumber
-        }
+        onButtons(numberOfButton: "4")
     }
     @IBAction func onFiveButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "5"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "5"
-            calculatingLabel.text = calculatingNumber
-        }
+        onButtons(numberOfButton: "5")
     }
     @IBAction func onSixButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "6"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "6"
-            calculatingLabel.text = calculatingNumber
-        }
+        onButtons(numberOfButton: "6")
     }
     @IBAction func onSevenButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "7"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "7"
-            calculatingLabel.text = calculatingNumber
-        }
+        onButtons(numberOfButton: "7")
     }
     @IBAction func onEightButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "8"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "8"
-            calculatingLabel.text = calculatingNumber
-        }
+        onButtons(numberOfButton: "8")
     }
     @IBAction func onNineButton(_ sender: Any) {
-        if calculatingNumber == "0" {
-            calculatingNumber = "9"
-            calculatingLabel.text = calculatingNumber
-        } else {
-            calculatingNumber += "9"
-            calculatingLabel.text = calculatingNumber
-        }
-    }
+        onButtons(numberOfButton: "9")    }
     @IBAction func onCommaButton(_ sender: Any) {
         if calculatingNumber == "0" {
             calculatingNumber = "0"
@@ -182,8 +124,33 @@ class ViewController: UIViewController {
     @IBAction func onMultiplyButton(_ sender: Any) {
     }
     @IBAction func onMinusButton(_ sender: Any) {
+        if minusNumber == 0 {
+            minusNumber += Double(calculatingNumber)!
+            
+            globalNumber = Double(calculatingNumber)!   ///
+            calculatingNumber = "0"
+            print(minusNumber, globalNumber)
+            print("11")
+        } else if minusNumber == globalNumber {
+            let someNumber = Double(calculatingNumber)!
+            calculatingNumber = "0"
+            minusNumber -= someNumber
+            calculatingLabel.text = String(minusNumber)
+            globalNumber = minusNumber // Double(calculatingNumber)!
+            print(minusNumber, globalNumber)
+            print("22")
+        } else {
+            calculatingNumber = "0"
+            plusNumber -= Double(calculatingNumber)!
+            calculatingLabel.text = String(minusNumber)
+            globalNumber = minusNumber // Double(calculatingNumber)!
+            print(minusNumber, globalNumber)
+            print("33")
+        }
     }
     @IBAction func onPlusButton(_ sender: Any) {
+        if plusNumber > 0 {
+        }
         if plusNumber == 0 {
             plusNumber += Double(calculatingNumber)!
             
@@ -192,9 +159,9 @@ class ViewController: UIViewController {
             print(plusNumber, globalNumber)
             print("1")
         } else if plusNumber == globalNumber {
-            let g = Double(calculatingNumber)!
+            let someNumber = Double(calculatingNumber)!
             calculatingNumber = "0"
-            plusNumber += g
+            plusNumber += someNumber
             calculatingLabel.text = String(plusNumber)
             globalNumber = plusNumber // Double(calculatingNumber)!
             print(plusNumber, globalNumber)
@@ -209,24 +176,45 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func onEqualButton(_ sender: Any) {
-        if globalNumber == 0 {
-            plusNumber += Double(calculatingNumber)!
-            calculatingLabel.text = String(plusNumber)
-            print("1.1")
-        } else if calculatingNumber == "0" {
-            let f = globalNumber
-            plusNumber += f
-            calculatingLabel.text = String(plusNumber)
-            print("1.2")
-        } else {
-            plusNumber += Double(calculatingNumber)!
-            calculatingLabel.text = String(plusNumber)
-            print("1.3")
+        if plusNumber > 0 {
+            if globalNumber == 0 {
+                plusNumber += Double(calculatingNumber)!
+                calculatingLabel.text = String(plusNumber)
+                print("1.1")
+            } else if calculatingNumber == "0" {
+                let someNumber = globalNumber
+                plusNumber += someNumber
+                calculatingLabel.text = String(plusNumber)
+                print("1.2")
+            } else {
+                plusNumber += Double(calculatingNumber)!
+                calculatingLabel.text = String(plusNumber)
+                print("1.3")
+            }
+            print(plusNumber, globalNumber)
         }
-        print(plusNumber, globalNumber)
         
-        // delete prints and learn how to work with optional type in this fucking calculator when change +/-
-        // rename var's and let's to normal
+        if minusNumber != 0 {
+            if globalNumber == 0 {
+                minusNumber += Double(calculatingNumber)!
+                calculatingLabel.text = String(plusNumber)
+                print("1.11")
+            } else if calculatingNumber == "0" {
+                let someNumber = globalNumber
+                minusNumber -= someNumber
+                calculatingLabel.text = String(minusNumber)
+                if minusNumber == 0 {
+                    minusNumber -= globalNumber
+                    calculatingLabel.text = String(minusNumber)
+                }
+                print("1.22")
+            } else {
+                minusNumber -= Double(calculatingNumber)!
+                calculatingLabel.text = String(minusNumber)
+                print("1.33")
+            }
+            print(minusNumber, globalNumber)
+        }
     }
     
     //MARK: - Private functions
@@ -253,7 +241,16 @@ class ViewController: UIViewController {
         minusButton.layer.cornerRadius = cornerRadius
         plusButton.layer.cornerRadius = cornerRadius
         equalButton.layer.cornerRadius = cornerRadius
-        return
+    }
+    
+    private func onButtons (numberOfButton: String) {
+        if calculatingNumber == "0" {
+            calculatingNumber = numberOfButton
+            calculatingLabel.text = calculatingNumber
+        } else {
+            calculatingNumber += numberOfButton
+            calculatingLabel.text = calculatingNumber
+        }
     }
     
 }
