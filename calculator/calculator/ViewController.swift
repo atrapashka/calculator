@@ -170,10 +170,10 @@ class ViewController: UIViewController {
         if calculatingNumber == "0" {
             calculatingNumber = "0"
             calculatingLabel.text = calculatingNumber
-        } else if calculatingNumber.contains(",") {
+        } else if calculatingNumber.contains(".") {
             calculatingLabel.text = calculatingNumber
         } else {
-            calculatingNumber += ","
+            calculatingNumber += "."
             calculatingLabel.text = calculatingNumber
         }
     }
@@ -219,12 +219,14 @@ class ViewController: UIViewController {
             calculatingLabel.text = String(plusNumber)
             print("1.2")
         } else {
-            let a: String = "0"
             plusNumber += Double(calculatingNumber)!
             calculatingLabel.text = String(plusNumber)
             print("1.3")
         }
         print(plusNumber, globalNumber)
+        
+        // delete prints and learn how to work with optional type in this fucking calculator when change +/-
+        // rename var's and let's to normal
     }
     
     //MARK: - Private functions
