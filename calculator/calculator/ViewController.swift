@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     
     private var calculatingNumber: String = "0"
     private var globalNumber: Double = 0
+    private var equalNumber: Double = 0
     private var plusNumber: Double = 0
     private var minusNumber: Double = 0
     private var multiplyNumber: Double = 0
@@ -61,6 +62,7 @@ class ViewController: UIViewController {
         minusNumber = 0
         multiplyNumber = 0
         divideNumber = 0
+        equalNumber = 0
         calculatingLabel.text = calculatingNumber
     }
     @IBAction func onChangeButton(_ sender: Any) {
@@ -120,14 +122,62 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func onDivideButton(_ sender: Any) {
+        if divideNumber == 0 {
+            divideNumber += Double(calculatingNumber)!
+            globalNumber = Double(calculatingNumber)!
+            equalNumber = divideNumber
+            calculatingNumber = "0"
+            print(divideNumber, globalNumber)
+            print("1111")
+        } else if divideNumber == globalNumber {
+            let someNumber = Double(calculatingNumber)!
+            calculatingNumber = "0"
+            divideNumber /= someNumber
+            calculatingLabel.text = String(divideNumber)
+            globalNumber = divideNumber // Double(calculatingNumber)!
+            equalNumber = divideNumber
+            print(divideNumber, globalNumber)
+            print("2222")
+        } else {
+            calculatingNumber = "0"
+            calculatingLabel.text = String(divideNumber)
+            globalNumber = divideNumber // Double(calculatingNumber)!
+            equalNumber = divideNumber
+            print(divideNumber, globalNumber)
+            print("3333")
+        }
     }
     @IBAction func onMultiplyButton(_ sender: Any) {
+        if multiplyNumber == 0 {
+            multiplyNumber += Double(calculatingNumber)!
+            globalNumber = Double(calculatingNumber)!
+            equalNumber = multiplyNumber
+            calculatingNumber = "0"
+            print(multiplyNumber, globalNumber)
+            print("111")
+        } else if multiplyNumber == globalNumber {
+            let someNumber = Double(calculatingNumber)!
+            calculatingNumber = "0"
+            multiplyNumber *= someNumber
+            calculatingLabel.text = String(multiplyNumber)
+            globalNumber = multiplyNumber // Double(calculatingNumber)!
+            equalNumber = multiplyNumber
+            print(multiplyNumber, globalNumber)
+            print("222")
+        } else {
+            calculatingNumber = "0"
+            calculatingLabel.text = String(multiplyNumber)
+            globalNumber = multiplyNumber // Double(calculatingNumber)!
+            equalNumber = multiplyNumber
+            print(multiplyNumber, globalNumber)
+            print("333")
+        }
     }
     @IBAction func onMinusButton(_ sender: Any) {
         if minusNumber == 0 {
             minusNumber += Double(calculatingNumber)!
-            
-            globalNumber = Double(calculatingNumber)!   ///
+            globalNumber = Double(calculatingNumber)!
+            equalNumber = minusNumber
             calculatingNumber = "0"
             print(minusNumber, globalNumber)
             print("11")
@@ -137,6 +187,7 @@ class ViewController: UIViewController {
             minusNumber -= someNumber
             calculatingLabel.text = String(minusNumber)
             globalNumber = minusNumber // Double(calculatingNumber)!
+            equalNumber = minusNumber
             print(minusNumber, globalNumber)
             print("22")
         } else {
@@ -144,17 +195,16 @@ class ViewController: UIViewController {
             plusNumber -= Double(calculatingNumber)!
             calculatingLabel.text = String(minusNumber)
             globalNumber = minusNumber // Double(calculatingNumber)!
+            equalNumber = minusNumber
             print(minusNumber, globalNumber)
             print("33")
         }
     }
     @IBAction func onPlusButton(_ sender: Any) {
-        if plusNumber > 0 {
-        }
         if plusNumber == 0 {
             plusNumber += Double(calculatingNumber)!
-            
-            globalNumber = Double(calculatingNumber)!   ///
+            globalNumber = Double(calculatingNumber)!
+            equalNumber = plusNumber
             calculatingNumber = "0"
             print(plusNumber, globalNumber)
             print("1")
@@ -164,6 +214,7 @@ class ViewController: UIViewController {
             plusNumber += someNumber
             calculatingLabel.text = String(plusNumber)
             globalNumber = plusNumber // Double(calculatingNumber)!
+            equalNumber = plusNumber
             print(plusNumber, globalNumber)
             print("2")
         } else {
@@ -171,12 +222,14 @@ class ViewController: UIViewController {
             plusNumber += Double(calculatingNumber)!
             calculatingLabel.text = String(plusNumber)
             globalNumber = plusNumber // Double(calculatingNumber)!
+            equalNumber = plusNumber
             print(plusNumber, globalNumber)
             print("3")
         }
     }
     @IBAction func onEqualButton(_ sender: Any) {
-        if plusNumber > 0 {
+        
+        if plusNumber != 0 {
             if globalNumber == 0 {
                 plusNumber += Double(calculatingNumber)!
                 calculatingLabel.text = String(plusNumber)
@@ -193,7 +246,7 @@ class ViewController: UIViewController {
             }
             print(plusNumber, globalNumber)
         }
-        
+
         if minusNumber != 0 {
             if globalNumber == 0 {
                 minusNumber += Double(calculatingNumber)!
@@ -203,10 +256,6 @@ class ViewController: UIViewController {
                 let someNumber = globalNumber
                 minusNumber -= someNumber
                 calculatingLabel.text = String(minusNumber)
-                if minusNumber == 0 {
-                    minusNumber -= globalNumber
-                    calculatingLabel.text = String(minusNumber)
-                }
                 print("1.22")
             } else {
                 minusNumber -= Double(calculatingNumber)!
@@ -214,6 +263,42 @@ class ViewController: UIViewController {
                 print("1.33")
             }
             print(minusNumber, globalNumber)
+        }
+        
+        if multiplyNumber != 0 {
+            if globalNumber == 0 {
+                multiplyNumber += Double(calculatingNumber)!
+                calculatingLabel.text = String(multiplyNumber)
+                print("1.111")
+            } else if calculatingNumber == "0" {
+                let someNumber = globalNumber
+                multiplyNumber *= someNumber
+                calculatingLabel.text = String(multiplyNumber)
+                print("1.222")
+            } else {
+                multiplyNumber *= Double(calculatingNumber)!
+                calculatingLabel.text = String(multiplyNumber)
+                print("1.333")
+            }
+            print(multiplyNumber, globalNumber)
+        }
+        
+        if divideNumber != 0 {
+            if globalNumber == 0 {
+                divideNumber += Double(calculatingNumber)!
+                calculatingLabel.text = String(divideNumber)
+                print("1.1111")
+            } else if calculatingNumber == "0" {
+                let someNumber = globalNumber
+                divideNumber /= someNumber
+                calculatingLabel.text = String(divideNumber)
+                print("1.2222")
+            } else {
+                divideNumber /= Double(calculatingNumber)!
+                calculatingLabel.text = String(divideNumber)
+                print("1.3333")
+            }
+            print(divideNumber, globalNumber)
         }
     }
     
